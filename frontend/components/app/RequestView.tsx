@@ -6,6 +6,7 @@ import { isAddress, parseUnits } from "viem";
 import { useApp, TOKENS, DEFAULT_TOKEN } from "@/lib/store";
 import { ZERO, isLive } from "@/lib/config";
 import { resolveName, requestPayment } from "@/lib/onchain";
+import { decimalInput } from "@/lib/num";
 import { Icon } from "@/components/Icon";
 
 const EXPLORER = "https://liteforge.explorer.caldera.xyz/tx/";
@@ -61,7 +62,7 @@ export function RequestView() {
       <div className="flex items-center gap-2 rounded-full pr-2" style={{ background: "var(--field)" }}>
         <div className="flex flex-1 items-center px-5">
           <span className="font-display text-lg font-bold text-muted">{token.symbol === "USDC" ? "$" : ""}</span>
-          <input value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" inputMode="decimal" className="font-display w-full bg-transparent py-3.5 pl-1 text-lg font-bold outline-none" />
+          <input value={amount} onChange={(e) => setAmount(decimalInput(e.target.value))} placeholder="0.00" inputMode="decimal" className="font-display w-full bg-transparent py-3.5 pl-1 text-lg font-bold outline-none" />
         </div>
         <div className="flex gap-1 rounded-full p-1" style={{ background: "var(--surface-2)" }}>
           {TOKENS.map((t) => (

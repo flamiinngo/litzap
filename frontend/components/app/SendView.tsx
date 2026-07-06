@@ -9,6 +9,7 @@ import { ZERO, isLive, CONTRACTS } from "@/lib/config";
 import { useEmbeddedWallet } from "@/lib/wallet";
 import { payNative, payErc20, resolveName, createSocialEscrow } from "@/lib/onchain";
 import { recipientKey, type SocialKind } from "@/lib/social";
+import { decimalInput } from "@/lib/num";
 import { Icon, type IconName } from "@/components/Icon";
 import { Zapster, type Mood } from "@/components/Zapster";
 import { ScanModal } from "./ScanModal";
@@ -150,7 +151,7 @@ export function SendView() {
         <div className="flex items-center gap-2 rounded-full pr-2" style={{ background: "var(--field)" }}>
           <div className="flex flex-1 items-center px-5">
             <span className="font-display text-lg font-bold text-muted">{token.symbol === "USDC" ? "$" : ""}</span>
-            <input value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" inputMode="decimal" className="font-display w-full bg-transparent py-3.5 pl-1 text-lg font-bold outline-none" />
+            <input value={amount} onChange={(e) => setAmount(decimalInput(e.target.value))} placeholder="0.00" inputMode="decimal" className="font-display w-full bg-transparent py-3.5 pl-1 text-lg font-bold outline-none" />
           </div>
 
           {/* styled token picker */}

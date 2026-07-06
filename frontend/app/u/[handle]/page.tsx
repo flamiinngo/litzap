@@ -8,6 +8,7 @@ import { MotionBackground } from "@/components/MotionBackground";
 import { Zapster } from "@/components/Zapster";
 import { Logo } from "@/components/Logo";
 import { Icon } from "@/components/Icon";
+import { decimalInput } from "@/lib/num";
 
 export default function PayHandlePage() {
   const params = useParams();
@@ -52,7 +53,7 @@ export default function PayHandlePage() {
               <span className="font-display text-lg font-bold text-muted">$</span>
               <input
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(decimalInput(e.target.value))}
                 placeholder="0.00"
                 inputMode="decimal"
                 className="font-display w-full bg-transparent py-3.5 pl-2 text-lg font-bold outline-none"

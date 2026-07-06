@@ -7,6 +7,7 @@ import { readContract } from "wagmi/actions";
 import { keccak256, toHex, parseEther, isAddress } from "viem";
 import { wagmiConfig, CONTRACTS, NATIVE, ZERO, isLive, litvm } from "@/lib/config";
 import { payAbi, registryAbi } from "@/lib/abi";
+import { decimalInput } from "@/lib/num";
 import { Icon, type IconName } from "./Icon";
 import type { Mood } from "./Zapster";
 
@@ -206,7 +207,7 @@ export function SendCard({ onMood }: { onMood: (m: Mood) => void }) {
           </label>
           <input
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => setAmount(decimalInput(e.target.value))}
             placeholder="0.00"
             inputMode="decimal"
             className="field font-display px-4 py-3 text-lg font-bold"

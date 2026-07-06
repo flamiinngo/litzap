@@ -8,6 +8,7 @@ import { TOKENS, DEFAULT_TOKEN } from "@/lib/store";
 import { useEmbeddedWallet } from "@/lib/wallet";
 import { ZERO, CONTRACTS, isLive } from "@/lib/config";
 import { createDropOnchain, getDropOnchain, type DropInfo } from "@/lib/onchain";
+import { decimalInput, integerInput } from "@/lib/num";
 import { Icon } from "@/components/Icon";
 
 const DROP_HOURS = 72;
@@ -96,7 +97,7 @@ export function DropsView() {
         <div className="flex items-center gap-2 rounded-full pr-2" style={{ background: "var(--field)" }}>
           <div className="flex flex-1 items-center px-5">
             <span className="font-display text-lg font-bold text-muted">{token.symbol === "USDC" ? "$" : ""}</span>
-            <input value={total} onChange={(e) => setTotal(e.target.value)} placeholder="total" inputMode="decimal" className="font-display w-full bg-transparent py-3.5 pl-1 text-lg font-bold outline-none" />
+            <input value={total} onChange={(e) => setTotal(decimalInput(e.target.value))} placeholder="total" inputMode="decimal" className="font-display w-full bg-transparent py-3.5 pl-1 text-lg font-bold outline-none" />
           </div>
           <div className="flex gap-1 rounded-full p-1" style={{ background: "var(--surface-2)" }}>
             {TOKENS.map((t) => (
@@ -109,7 +110,7 @@ export function DropsView() {
         <div className="mb-3 mt-2 px-2 text-xs text-muted">Balance: <span className="font-semibold">{balText}</span></div>
 
         <div className="flex items-center rounded-full px-5" style={{ background: "var(--field)" }}>
-          <input value={count} onChange={(e) => setCount(e.target.value)} placeholder="how many people" inputMode="numeric" className="w-full bg-transparent py-3.5 text-sm outline-none" />
+          <input value={count} onChange={(e) => setCount(integerInput(e.target.value))} placeholder="how many people" inputMode="numeric" className="w-full bg-transparent py-3.5 text-sm outline-none" />
         </div>
 
         <div className="mt-3 flex gap-2">
